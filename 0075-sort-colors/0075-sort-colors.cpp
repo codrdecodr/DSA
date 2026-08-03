@@ -1,16 +1,18 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        map<int,int> mpp;
-        for(auto it : nums){
-            mpp[it]++;
-        }
-        int ind = 0;
-        for(int color = 0; color < 3 ; color++){
-            int freq = mpp[color];
-            for(int j = 0; j < freq ; j++){
-                nums[ind] = color;
-                ind++;
+        int low = 0, mid = 0;
+        int high = nums.size() - 1;
+        while (mid <= high) {
+            if (nums[mid] == 0) {
+                swap(nums[low], nums[mid]);
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                swap(nums[mid], nums[high]);
+                high--;
             }
         }
     }
