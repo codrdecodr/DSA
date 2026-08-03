@@ -1,11 +1,16 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (nums[i] > nums[j]) {
-                    swap(nums[i], nums[j]);
-                }
+        map<int,int> mpp;
+        for(auto it : nums){
+            mpp[it]++;
+        }
+        int ind = 0;
+        for(int color = 0; color < 3 ; color++){
+            int freq = mpp[color];
+            for(int j = 0; j < freq ; j++){
+                nums[ind] = color;
+                ind++;
             }
         }
     }
