@@ -1,10 +1,6 @@
-select(
-    select distinct salary 
-    from(
-        select salary,
-        dense_rank() over(order by salary desc) 
-        as rnk
-        from employee
-    ) as Rankedsalaries
-    where rnk = 2
-) as SecondHighestSalary
+# Write your MySQL query statement below
+select distinct max(salary) as SecondHighestSalary
+from Employee 
+where salary not in(
+    select max(salary) from Employee
+)
